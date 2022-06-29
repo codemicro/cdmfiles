@@ -18,7 +18,8 @@ proc init(windowTitle: string, width, height: int32): (GLFWWindow,
 
   let window = glfwCreateWindow(width, height, cstring(windowTitle))
   if window == nil:
-    quit(-1)
+    stderr.writeLine("could not create window with GLFW")
+    quit(1)
 
   window.makeContextCurrent()
 
