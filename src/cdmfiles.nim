@@ -6,7 +6,8 @@ const
   InitialWindowWidth = 700
   InitialWindowHeight = 500
 
-proc init(windowTitle: string, width, height: int32): (GLFWWindow, ptr ImGuiContext) =
+proc init(windowTitle: string, width, height: int32): (GLFWWindow,
+    ptr ImGuiContext) =
   doAssert glfwInit()
 
   glfwWindowHint(GLFWContextVersionMajor, 3)
@@ -39,7 +40,7 @@ proc teardown(window: GLFWWindow, context: ptr ImGuiContext) =
   glfwTerminate()
 
 proc main() =
-  var 
+  var
     opts = loadOptions()
     state: State
 

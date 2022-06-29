@@ -1,7 +1,6 @@
 import nimgl/imgui, nimgl/imgui/[impl_opengl, impl_glfw]
 import nimgl/[opengl, glfw]
 import options
-import nimgl/imgui, nimgl/imgui/[impl_opengl, impl_glfw]
 
 
 func `or`(x: ImGuiWindowFlags, y: ImGuiWindowFlags): ImGuiWindowFlags =
@@ -18,7 +17,7 @@ proc drawMenuBar(state: State) =
             igEndMenu()
 
         igEndMainMenuBar()
-            
+
 
 proc drawUI(state: State) =
     let mainViewport = igGetMainViewport()
@@ -31,7 +30,7 @@ proc drawUI(state: State) =
 
     drawMenuBar(state)
 
-    igEnd() # fullscreen window
+    igEnd()
 
 proc uiLoop*(state: State) =
     while not state.window.windowShouldClose:

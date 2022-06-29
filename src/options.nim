@@ -2,7 +2,7 @@ import std/parseopt
 import nimgl/glfw
 import os
 
-type 
+type
     ProgramOptions* = object
         startPath*: string
         showDemo*: bool
@@ -25,7 +25,7 @@ proc loadOptions*(): ProgramOptions =
             of "demo": result.showDemo = true
         of cmdEnd: assert(false) # cannot happen
 
-proc init*(state: var State)=
+proc init*(state: var State) =
     if state.opts.startPath == "":
         state.currentPath = getHomeDir()
     else:
