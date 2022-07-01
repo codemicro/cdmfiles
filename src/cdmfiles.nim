@@ -51,11 +51,12 @@ proc main() =
   let (window, context) = init("cdmfiles", InitialWindowWidth, InitialWindowHeight)
 
   state.window = window
+  state.igContext = context
   state.init()
-
+  
   debugEcho(state[])
 
-  uiLoop(state)
+  runUI(state)
 
   teardown(window, context)
 

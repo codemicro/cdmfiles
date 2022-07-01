@@ -1,6 +1,9 @@
 import std/parseopt
-import nimgl/glfw
+import nimgl/[glfw, imgui]
 import os
+
+const
+    MaxPathInputLength* = 256
 
 type
     ProgramOptions* = object
@@ -10,7 +13,18 @@ type
     State* = ref object
         opts*: ProgramOptions
         window*: GLFWWindow
+        igContext*: ptr ImGuiContext
         currentPath*: string
+        
+        mainFont*: ptr ImFont
+        largeFont*: ptr ImFont
+
+        pathInputText*: cstring
+
+func allocateCstringBuffer(length: int, initialContent: string = ""): cstring =
+    var b = newString(length)
+    b[0..initialContent.high] = initialContent
+    return cstring(b)
 
 proc loadOptions*(): ProgramOptions =
     for kind, key, val in getopt():
@@ -30,3 +44,5 @@ proc init*(state: var State) =
         state.currentPath = getHomeDir()
     else:
         state.currentPath = state.opts.startPath
+
+    state.pathInputText = allocateCstringBuffer(MaxPathInputLength, state.currentPath)
